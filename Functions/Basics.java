@@ -142,20 +142,56 @@ public class Basics {
         return ans;
     }
 
-    // public static String addBinary(String str1, String str2) {
-    // int ldOfStr1 = str1.length() - 1;
-    // int ldOfStr2 = str1.length() - 1;
-    // int carry = 0;
-    // String result = "";
+    public static int fibonacci(int n) {
+        int ff = 0;
+        int sf = 1;
+        int lastFibo = 1;
 
-    // while (ldOfStr1 != 0 || ldOfStr2 != 0) {
-    // if(str1.lastIndexOf(ldOfStr1) == 1)
-    // }
-    // return result;
-    // }
+        for (int i = 1; i < n; i++) {
+            lastFibo = ff + sf;
+            ff = sf;
+            sf = lastFibo;
+        }
+
+        return lastFibo;
+    }
+
+    public static int nThElementOfFibonacci(int n) {
+        // Handle base cases
+        if (n <= 0)
+            return 0;
+        if (n == 1 || n == 2)
+            return 1;
+        return fibonacci(n - 2) + fibonacci(n - 1);
+    }
+
+    public static String addBinary(String str1, String str2) {
+        int ldOfStr1 = str1.length() - 1;
+        int ldOfStr2 = str2.length() - 1;
+        StringBuilder result = new StringBuilder();
+        int carry = 0;
+
+        while (ldOfStr1 >= 0 || ldOfStr2 >= 0) {
+            
+            int bit1 = (ldOfStr1 >= 0) ? str1.charAt(ldOfStr1) - '0' : 0;
+            int bit2 = (ldOfStr2 >= 0) ? str2.charAt(ldOfStr2) - '0' : 0;
+
+            int sum = bit1 + bit2 + carry;
+            result.append(sum % 2);
+            carry = sum / 2;
+
+            ldOfStr1--;
+            ldOfStr2--;
+        }
+
+        if (carry > 0) {
+            result.append(carry);
+        }
+        return result.reverse().toString();
+    }
 
     public static void main(String[] args) {
-        List<List<Integer>> result = pascalTri(5);
-        System.out.println(result);
+        System.out.println(addBinary("11", "1"));
+        System.out.println(rowOfPascal(31));
     }
 }
