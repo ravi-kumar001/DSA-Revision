@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ArraysCC {
     public static void printArray(int marks[]) {
         for (int i = 0; i < marks.length; i++) {
@@ -154,8 +156,8 @@ public class ArraysCC {
 
         for (int i = 0; i < number.length; i++) {
             cs += number[i];
-            if (cs < 0) {
-                cs = 0;
+            if (cs < number[i]) {
+                cs = number[i];
             }
             ms = Math.max(cs, ms);
         }
@@ -204,6 +206,27 @@ public class ArraysCC {
         return maxProfit;
     }
 
+    // public static int numWaterBottles(int numBottles, int numExchange) {
+    // return numBottles + ((numBottles - 1) / (numExchange - 1));
+    // }
+
+    public int numWaterBottles(int numBottles, int numExchange) {
+
+        // We use Carry Approach
+
+        int ans = numBottles;
+
+        while (numBottles >= numExchange) {
+            ans += numBottles / numExchange;
+            int carry = numBottles % numExchange;
+            numBottles = (numBottles / numExchange) + carry;
+        }
+
+        return ans;
+    }
+
+    
+
     public static void main(String[] args) {
         // int marks[] = new int[50];
 
@@ -250,7 +273,7 @@ public class ArraysCC {
         // int subArr[] = { 1, -2, 6, -1, 3 };
         // subSumPrefixArry(subArr);
 
-        // int kadanesNum[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+        // int kadanesNum[] = { -3, -5, -2, -8 };
         // kadans(kadanesNum);
 
         // int trappedArr[] = { 4, 2, 0, 6, 3, 2, 5 };
@@ -259,5 +282,6 @@ public class ArraysCC {
 
         int prices[] = { 7, 1, 5, 3, 6, 4, 2 };
         System.out.println(maxStockProfit(prices));
+
     }
 }
