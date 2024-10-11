@@ -1,47 +1,105 @@
 public class Basics {
-    public static boolean vowelChecker(char c) {
-        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I'
-                || c == 'O' || c == 'U') {
-            return true;
-        }
-        return false;
-    }
 
-    public static boolean modifiedVowel(char c) {
-        return "aeiouAEIOU".indexOf(c) != -1;
-    }
-
-    public static String reverseVowels(String s) {
-
-        char[] charArray = s.toCharArray();
+    public static boolean isPalindrome(String str) {
         int start = 0;
-        int end = s.length() - 1;
+        int end = str.length() - 1;
 
-        while (start < end) {
-            if (!modifiedVowel(charArray[start])) {
+        while (start < end) { // Not need to check start == end b/c this is already same
+            if (str.charAt(start) == str.charAt(end)) {
                 start++;
-                continue;
-            }
-            if (!modifiedVowel(charArray[end])) {
                 end--;
-                continue;
             }
-
-            // Otherwise swap
-
-            char temp = charArray[start];
-            charArray[start] = charArray[end];
-            charArray[end] = temp;
-
-            start++;
-            end--;
         }
 
-        return new String(charArray);
+        return start == end;
+    }
+
+    public static double shortestPath(String route) {
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < route.length(); i++) {
+            if (route.charAt(i) == 'E') {
+                x++;
+            } else if (route.charAt(i) == 'N') {
+                y++;
+            } else if (route.charAt(i) == 'S') {
+                y--;
+            } else {
+                x--;
+            }
+        }
+
+        return Math.sqrt((x * x) + (y * y));
+    }
+
+    public static String largestString(String fruits[]) {
+        String larStr = fruits[0];
+
+        for (int i = 1; i < fruits.length; i++) {
+            if (larStr.compareTo(fruits[i]) < 0) {
+                larStr = fruits[i];
+            }
+        }
+        return larStr;
+    }
+
+    public static String firstLetterUpper(String str) {
+        StringBuilder sb = new StringBuilder("");
+        sb.append(Character.toUpperCase(str.charAt(0)));
+
+        for (int i = 1; i < str.length(); i++) {
+            if (str.charAt(i) == ' ' && i < str.length() - 1) {
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            } else {
+                sb.append(str.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String stringCompression(String str) {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < str.length(); i++) {
+            Integer count = 1;
+            sb.append(str.charAt(i));
+            while (i < str.length() - 1 && str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            if (count > 1) {
+                sb.append(count);
+            }
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String s = "E";
-        System.out.println(reverseVowels(s));
+        // String str = "Ravi Kumar";
+
+        // String str2 = new String("Ravi Kumar Patel");
+
+        // System.out.println(str.charAt(0));
+
+        // System.out.println(str);
+        // System.out.println(str2);
+
+        // String str = "madam";
+        // System.out.println(isPalindrome(str));
+
+        // String route = "WNEENESENNN";
+        // System.out.println(shortestPath(route));
+
+        // String fruits[] = { "mango", "apple", "banana" };
+        // System.out.println(largestString(fruits));
+
+        // String str = "hi, my name is ravi.";
+        // System.out.println(firstLetterUpper(str));
+
+        String str = "aaabbcccdd";
+        System.out.println(stringCompression(str));
+
     }
 }
