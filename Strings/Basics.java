@@ -98,7 +98,7 @@ public class Basics {
         // String str = "hi, my name is ravi.";
         // System.out.println(firstLetterUpper(str));
 
-        String str = "aaabbcccdd";
+        String str = "aabbccc";
         System.out.println(stringCompression(str));
 
     }
