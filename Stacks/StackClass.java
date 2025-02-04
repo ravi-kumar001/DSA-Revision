@@ -161,7 +161,7 @@ public class StackClass {
     }
 
     public static void main(String[] args) {
-        String str1 = "((a + b))";
+        String str1 = "(a + b)";
 
         System.out.println(duplicateParentheses(str1));
     }
