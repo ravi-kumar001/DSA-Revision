@@ -30,7 +30,6 @@ public class ThisMethod {
 
         // Student st1 = new Student(18, "Ravi");
         Student st1 = new Student(18);
-
         st1.display();
     }
 }

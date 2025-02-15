@@ -157,3 +157,73 @@ public class Main {
 ---
 
 Would you like a real-world example of when **not** to use `static`? 🚀
+
+A **default constructor** in Java is a constructor that takes no arguments and is either explicitly defined or automatically provided by the compiler if no other constructor is present in the class.  
+
+### Example of a Default Constructor:
+```java
+// Class with a Default Constructor
+class Student {
+    // Default Constructor
+    Student() {
+        System.out.println("Default Constructor Called");
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of Student class
+        Student s1 = new Student(); // This will invoke the default constructor
+    }
+}
+```
+### Output:
+```
+Default Constructor Called
+```
+
+In this example:
+- `Student()` is a default constructor.
+- It gets called automatically when an object of `Student` is created.
+- If no constructor is defined, Java provides a **no-argument constructor** by default.
+
+In Java, you can create your own **constructor** by defining a method with the same name as the class. It is automatically called when an object of the class is created.  
+
+### Steps to Create Your Own Constructor:
+1. **Define a constructor inside the class** with the same name as the class.
+2. **No return type**, not even `void`.
+3. **Initialize instance variables** inside the constructor.
+
+### Example:
+```java
+class Car {
+    String brand;
+    int speed;
+
+    // Constructor (user-defined)
+    Car(String carBrand, int carSpeed) {
+        brand = carBrand;
+        speed = carSpeed;
+        System.out.println("Car Constructor Called!");
+    }
+
+    // Method to display car details
+    void display() {
+        System.out.println("Brand: " + brand + ", Speed: " + speed + " km/h");
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of Car and calling the constructor
+        Car myCar = new Car("Toyota", 180);
+        myCar.display();
+    }
+}
+```
+### Output:
+```
+Car Constructor Called!
+Brand: Toyota, Speed: 180 km/h
+```
+
+### Explanation:
+- The constructor `Car(String carBrand, int carSpeed)` initializes `brand` and `speed` when an object is created.
+- The constructor is called automatically when `new Car("Toyota", 180);` is executed.
+- You can create multiple constructors using **constructor overloading** (same name, different parameters).

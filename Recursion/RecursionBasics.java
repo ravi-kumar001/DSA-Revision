@@ -175,7 +175,16 @@ public class RecursionBasics {
         System.out.print(str.charAt(index));
     }
 
+    public static int mazePath(int sr, int sc, int er, int ec) {
+        if (sr > er || sc > ec)
+            return 0;
+        if (sr == er && sc == ec)
+            return 1;
+
+        return mazePath(sr, sc + 1, er, ec) + mazePath(sr + 1, sc, er, ec); // first left and right;
+    }
+
     public static void main(String[] args) {
-       stringRev("abcd", 0);
+        System.out.println(mazePath(1, 1, 4, 3));
     }
 }
