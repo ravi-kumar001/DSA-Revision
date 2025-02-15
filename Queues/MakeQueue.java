@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 class LinkedListQ {
@@ -158,6 +160,65 @@ class QueueUsing2Stack {
     }
 }
 
+class StackUsing2Queue {
+    private Queue<Integer> q1 = new LinkedList<>();
+    private Queue<Integer> q2 = new LinkedList<>();
+
+    public void push(int x) {
+        // Always add the new element to q1
+        q1.add(x);
+    }
+
+    public int pop() {
+        if (empty()) {
+            return -1; // Stack is empty
+        }
+
+        // Move all elements from q1 to q2 except the last one
+        while (q1.size() > 1) {
+            q2.add(q1.remove());
+        }
+
+        // The last element in q1 is the top of the stack
+        int top = q1.remove();
+
+        // Swap q1 and q2 so that q1 is always the main queue
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+
+        return top;
+    }
+
+    public int top() {
+        if (empty()) {
+            return -1; // Stack is empty
+        }
+
+        // Move all elements from q1 to q2 except the last one
+        while (q1.size() > 1) {
+            q2.add(q1.remove());
+        }
+
+        // The last element in q1 is the top of the stack
+        int top = q1.remove();
+
+        // Add the top element back to q2
+        q2.add(top);
+
+        // Swap q1 and q2 so that q1 is always the main queue
+        Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+
+        return top;
+    }
+
+    public boolean empty() {
+        return q1.isEmpty() && q2.isEmpty();
+    }
+}
+
 // Using Array ==> drawbacks only store n elements
 class Queues {
     int arr[];
@@ -211,14 +272,14 @@ class Queues {
 public class MakeQueue {
 
     public static void main(String[] args) {
-        QueueUsing2Stack q = new QueueUsing2Stack();
-        q.add(1);
-        q.add(2);
-        q.add(3);
+        StackUsing2Queue s = new StackUsing2Queue();
+        s.push(1);
+        s.push(2);
+        s.push(3);
 
-        while (!q.isEmpty()) {
-            System.out.println(q.peek());
-            q.remove();
+        while (!s.empty()) {
+            System.out.println(s.top());
+            s.pop();
         }
     }
 }
