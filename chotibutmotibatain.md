@@ -102,3 +102,23 @@ class Solution {
 ```
 
 ---
+
+The statement `Arrays.fill(arr, -1);` is **incorrect** because `Arrays.fill()` works only on **one-dimensional** arrays, but `arr` is a **two-dimensional** array.  
+
+### Correct Ways to Fill a 2D Array in Java:
+
+1. **Using a Loop (Recommended for 2D Arrays)**  
+   ```java
+   for (int i = 0; i <= m; i++) {
+       Arrays.fill(arr[i], -1);
+   }
+   ```
+   - This iterates over each row (`arr[i]`) and fills it with `-1`.
+
+2. **Using `Stream` (Less Readable but Works)**
+   ```java
+   Arrays.stream(arr).forEach(row -> Arrays.fill(row, -1));
+   ```
+   - This uses Java Streams to iterate over each row and fill it.
+
+Would you like further clarification or an alternative approach? 🚀
