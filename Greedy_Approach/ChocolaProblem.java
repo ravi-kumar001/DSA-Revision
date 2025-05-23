@@ -25,7 +25,7 @@ public class ChocolaProblem {
                 v++;
                 vp++;
             }
-        }
+        }BUy
 
         while (h < costH.length) {
             price += vp * costH[h];

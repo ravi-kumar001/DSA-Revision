@@ -150,19 +150,23 @@ public class ArraysCC {
         System.out.println("Max Sum => " + maxSum);
     }
 
-    public static void kadans(int number[]) {
-        int cs = 0;
-        int ms = Integer.MIN_VALUE;
-
+    public static void kadane(int number[]) {
+        int cs = 0; // Current sum
+        int ms = Integer.MIN_VALUE; // Max sum
+    
         for (int i = 0; i < number.length; i++) {
             cs += number[i];
-            if (cs < number[i]) {
-                cs = number[i];
+    
+            if (cs < 0) { // Reset if sum goes negative
+                cs = 0;
             }
-            ms = Math.max(cs, ms);
+            
+            ms = Math.max(ms, cs);
         }
+        
         System.out.println("Max subArray sum => " + ms);
     }
+    
 
     public static int trappedWater(int height[], int width) {
         int n = height.length;
@@ -206,6 +210,21 @@ public class ArraysCC {
         return maxProfit;
     }
 
+    public static int maximumProfit(int prices[]) {
+        int n = prices.length;
+        if (n == 0)
+            return 0;
+
+        int profit = 0;
+        for (int i = 1; i < n; i++) {
+            // If there is a profit opportunity (price increases)
+            if (prices[i] > prices[i - 1]) {
+                profit += prices[i] - prices[i - 1];
+            }
+        }
+        return profit;
+    }
+
     // public static int numWaterBottles(int numBottles, int numExchange) {
     // return numBottles + ((numBottles - 1) / (numExchange - 1));
     // }
@@ -224,8 +243,6 @@ public class ArraysCC {
 
         return ans;
     }
-
-    
 
     public static void main(String[] args) {
         // int marks[] = new int[50];
@@ -280,8 +297,8 @@ public class ArraysCC {
         // int width = 2;
         // System.out.println(trappedWater(trappedArr, width));
 
-        int prices[] = { 7, 1, 5, 3, 6, 4, 2 };
-        System.out.println(maxStockProfit(prices));
+        int prices[] = { 100, 180, 260, 310, 40, 535, 695 };
+        System.out.println(maximumProfit(prices));
 
     }
 }
